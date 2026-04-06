@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Welcome {{ session['name'] }}</h2>
+<table>
+    <tr>
+        <th>Scholarship</th>
+        <th>Deadline</th>
+        <th>Action</th>
+    </tr>
+    {% for s in scholarships %}
+    <tr>
+        <td>{{ s[1] }}</td>
+        <td>{{ s[4] }}</td>
+        <td><a class="btn" href="{{ url_for('apply_scholarship', scholarship_id=s[0]) }}">Apply</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
