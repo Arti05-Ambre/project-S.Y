@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Welcome {{ session.get('name', 'User') }}</h2>
+
+<!Notification Section -->
+{% if notifications %}
+<div class="notification-box">
+    <b>Notifications:</b>
+    <ul>
+        {% for n in notifications %}
+        <li>{{ n }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+<table class="scholarship-table">
+    <thead>
+        <tr>
+            <th>Scholarship</th>
+            <th>Deadline</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if scholarships %}
+        {% for s in scholarships %}
+        <tr>
+            <td>{{ s[1] }}</td>
+            <td>{{ s[4] }}</td>
+            <td>
+                <a class="btn apply-btn" href="{{ url_for('apply_scholarship', scholarship_id=s[0]) }}">Apply</a>
+                <a class="btn bookmark-btn" href="{{ url_for('bookmark', scholarship_id=s[0]) }}">⭐ Bookmark</a>
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td>Post Matric Scholarship</td>
+            <td>2026-04-15</td>
+            <td><i>Sample Data</i></td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>
+<a class="btn my-bookmarks-btn" href="{{ url_for('my_bookmarks') }}">View My Bookmarks</a>
+{% endblock %}
