@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>My Bookmarked Scholarships</h2>
+{% if data %}
+<table class="scholarship-table">
+    <thead>
+        <tr>
+            <th>Scholarship</th>
+            <th>Deadline</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in data %}
+        <tr>
+            <td>{{ d[0] }}</td>
+            <td>{{ d[1] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No bookmarks yet!</p>
+{% endif %}
+<a class="btn" href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+{% endblock %}
